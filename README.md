@@ -4,7 +4,7 @@ An interactive EV market analytics web application developed using **Tableau, Py
 
 ## 🌐 Live Application
 
-**Live Website:** [EV Market Analysis](https://YOUR-RENDER-URL.onrender.com/)
+**Live Website:** [EV Market Analysis](https://ev-market-analysis-aj8t.onrender.com/)
 
 ## 📌 Project Overview
 
