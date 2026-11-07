@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Story{% endblock %}
+{% block content %}
+<header class="page-hero">
+  <div class="wrap">
+    <span class="tag">Data Story</span>
+    <h1>EV Story</h1>
+    <p>A guided, step-by-step walkthrough of the findings, like a short presentation. Use the arrows at the top of the story to move between points.</p>
+  </div>
+</header>
+
+<div class="wrap page-body">
+  <section id="story">
+    <div class="viz-card reveal">
+      <div class="viz-bar">
+        <h3>The EV Market, Step by Step</h3>
+        <a href="https://public.tableau.com/app/profile/maahi.umarwani/viz/EVMarketAnalysis_17935995381450/EVStory" target="_blank" rel="noopener">Open on Tableau Public ↗</a>
+      </div>
+      <div class="tableauPlaceholder" id="vizStory" style="position:relative">
+        <object class="tableauViz" style="display:none;">
+          <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+          <param name="embed_code_version" value="3" />
+          <param name="site_root" value="" />
+          <param name="name" value="EVMarketAnalysis_17935995381450&#47;EVStory" />
+          <param name="tabs" value="no" />
+          <param name="toolbar" value="yes" />
+          <param name="static_image" value="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;EV&#47;EVMarketAnalysis_17935995381450&#47;EVStory&#47;1.png" />
+          <param name="animate_transition" value="yes" />
+          <param name="display_static_image" value="yes" />
+          <param name="display_spinner" value="yes" />
+          <param name="display_overlay" value="yes" />
+          <param name="display_count" value="yes" />
+          <param name="language" value="en-US" />
+        </object>
+      </div>
+      <div class="fallback" id="fbStory">
+        <h4>📖 Live story</h4>
+        <p>The interactive Tableau story couldn't load right now.</p>
+        <a class="btn" href="https://public.tableau.com/app/profile/maahi.umarwani/viz/EVMarketAnalysis_17935995381450/EVStory" target="_blank" rel="noopener">Open the story ↗</a>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

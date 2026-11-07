@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<header class="page-hero">
+  <div class="wrap">
+    <span class="tag">Interactive Dashboard</span>
+    <h1>EV Dashboard</h1>
+    <p>Eight connected views with KPI cards and global filters for Category, Battery Type and Model Year. Click, hover and filter to explore.</p>
+  </div>
+</header>
+
+<div class="wrap page-body">
+  <section id="dashboard">
+    <div class="viz-card reveal">
+      <div class="viz-bar">
+        <h3>Electric Vehicle Market Performance &amp; Insights</h3>
+        <a href="https://public.tableau.com/app/profile/maahi.umarwani/viz/EVMarketAnalysis_17935995381450/EVDashboard" target="_blank" rel="noopener">Open on Tableau Public ↗</a>
+      </div>
+      <div class="tableauPlaceholder" id="vizDashboard" style="position:relative">
+        <object class="tableauViz" style="display:none;">
+          <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+          <param name="embed_code_version" value="3" />
+          <param name="site_root" value="" />
+          <param name="name" value="EVMarketAnalysis_17935995381450&#47;EVDashboard" />
+          <param name="tabs" value="no" />
+          <param name="toolbar" value="yes" />
+          <param name="static_image" value="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;EV&#47;EVMarketAnalysis_17935995381450&#47;EVDashboard&#47;1.png" />
+          <param name="animate_transition" value="yes" />
+          <param name="display_static_image" value="yes" />
+          <param name="display_spinner" value="yes" />
+          <param name="display_overlay" value="yes" />
+          <param name="display_count" value="yes" />
+          <param name="language" value="en-US" />
+        </object>
+      </div>
+      <div class="fallback" id="fbDashboard">
+        <h4>📊 Live dashboard</h4>
+        <p>The interactive Tableau dashboard couldn't load right now.</p>
+        <a class="btn" href="https://public.tableau.com/app/profile/maahi.umarwani/viz/EVMarketAnalysis_17935995381450/EVDashboard" target="_blank" rel="noopener">Open the dashboard ↗</a>
+      </div>
+      <div class="tips">
+        <span class="tip">🎯 Use the filters on the right</span>
+        <span class="tip">🖱️ Hover for exact values</span>
+        <span class="tip">🔋 Click a battery type to filter all views</span>
+        <span class="tip">⛶ Full-screen from the toolbar</span>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

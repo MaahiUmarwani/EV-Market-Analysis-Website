@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block head %}<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>{% endblock %}
+{% block content %}
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="wrap">
+    <span class="tag">Tableau Public · Data Visualization Project</span>
+    <h1>Electric Vehicle Market Performance &amp; Insights</h1>
+    <p>An interactive look at <b>200,000+ EV records</b> across categories, countries, regions, manufacturers and battery technologies, from model years 2018 to 2026.</p>
+    <div class="btns">
+      <a class="btn primary" href="{{ url_for('dashboard') }}">▶ Explore Dashboard</a>
+      <a class="btn ghost" href="{{ url_for('story') }}">📖 View Story</a>
+      <a class="btn ghost" href="#insights">💡 Key Insights</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <!-- KPIs -->
+  <div class="kpis">
+    <div class="kpi reveal"><div class="label">Annual Sales Units</div><div class="value" data-count="1550703961">0</div><div class="note">Total across dataset</div></div>
+    <div class="kpi reveal"><div class="label">Avg. Customer Rating</div><div class="value" data-count="4.09" data-dec="2">0</div><div class="note">Out of 5</div></div>
+    <div class="kpi reveal"><div class="label">Avg. Price (USD)</div><div class="value" data-count="64921" data-prefix="$">0</div><div class="note">Per vehicle</div></div>
+    <div class="kpi reveal"><div class="label">Avg. Range</div><div class="value" data-count="325" data-suffix=" km">0</div><div class="note">Per full charge</div></div>
+  </div>
+
+  <!-- EXPLORE -->
+  <section id="explore">
+    <div class="head reveal">
+      <div class="eyebrow">Explore the Project</div>
+      <h2>Dashboard, story and insights</h2>
+      <p>Open the live Tableau dashboard, walk through the data story, or scroll down for the key findings.</p>
+    </div>
+    <div class="explore">
+      <div class="card reveal"><div class="icon">📊</div><h3>Interactive Dashboard</h3><p>Eight connected views with KPI cards and filters for category, battery type and model year.</p><a href="{{ url_for('dashboard') }}">Explore Dashboard &rarr;</a></div>
+      <div class="card reveal"><div class="icon">📖</div><h3>Data Story</h3><p>A guided, step-by-step Tableau Story presenting the main findings like a short presentation.</p><a href="{{ url_for('story') }}">View Story &rarr;</a></div>
+      <div class="card reveal"><div class="icon">💡</div><h3>Key Insights</h3><p>Battery share, regional sales, top categories, range, manufacturers, ratings and the sales trend.</p><a href="#insights">Discover Insights &rarr;</a></div>
+    </div>
+  </section>
+
+  <!-- INSIGHTS -->
+  <section id="insights">
+    <div class="head reveal">
+      <div class="eyebrow">Key Insights</div>
+      <h2>What the data shows</h2>
+      <p>Highlights from each view of the dashboard. Click the tabs and chart segments to explore.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card reveal">
+        <h3>Battery Type Share</h3>
+        <div class="sub">Share of EVs by battery chemistry. Click a segment.</div>
+        <div class="chart-box"><canvas id="batteryChart"></canvas></div>
+        <div class="detail" id="batteryDetail">👆 Click a segment to learn about that battery type.</div>
+      </div>
+      <div class="card reveal">
+        <h3>Sales by Region</h3>
+        <div class="sub">Share of annual sales units across 7 regions</div>
+        <div class="chart-box"><canvas id="regionChart"></canvas></div>
+        <div class="detail">🌍 Every region holds about <b>14%</b> of sales, so EV demand is evenly balanced worldwide in this dataset.</div>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:20px">
+      <div class="tabs" id="tabs">
+        <button class="on" data-p="p1">🛵 Sales by Category</button>
+        <button data-p="p2">🛣️ Avg Range</button>
+        <button data-p="p3">🌐 Sales by Country</button>
+        <button data-p="p4">🏭 Top Manufacturers</button>
+        <button data-p="p5">⭐ Ratings</button>
+        <button data-p="p6">📈 Sales Trend</button>
+      </div>
+
+      <div class="panel on" id="p1">
+        <div>
+          <div class="big">174.6M</div>
+          <p style="color:var(--muted);margin-top:6px">units sold: <b>Two-Wheeler Scooters</b> are the top category</p>
+          <p style="margin-top:16px">EV adoption is led by <b>affordable, everyday vehicles</b>: scooters, hatchbacks, compact SUVs and sedans. Commercial segments such as electric trucks, pickups and buses are the smallest, at about 13M units or less.</p>
+        </div>
+        <div class="bar-list" data-max="174615722">
+          <div class="row"><span>Two-Wheeler Scooter</span><div class="track"><div class="fill" data-v="174615722"></div></div><span class="num">174.6M</span></div>
+          <div class="row"><span>Compact SUV</span><div class="track"><div class="fill" data-v="153351587"></div></div><span class="num">153.4M</span></div>
+          <div class="row"><span>Three-Wheeler</span><div class="track"><div class="fill" data-v="132304173"></div></div><span class="num">132.3M</span></div>
+          <div class="row"><span>Micro City Car</span><div class="track"><div class="fill" data-v="115272864"></div></div><span class="num">115.3M</span></div>
+          <div class="row"><span>Van / MPV</span><div class="track"><div class="fill" data-v="95909210"></div></div><span class="num">95.9M</span></div>
+          <div class="row"><span>Pickup Truck</span><div class="track"><div class="fill" data-v="12811256"></div></div><span class="num">12.8M</span></div>
+        </div>
+      </div>
+
+      <div class="panel" id="p2">
+        <div>
+          <div class="big">550.6 km</div>
+          <p style="color:var(--muted);margin-top:6px">average range: <b>Luxury Sedans</b> go the farthest</p>
+          <p style="margin-top:16px">Premium and larger vehicles carry bigger batteries and the longest range. Micro city cars, three-wheelers and scooters are built for short daily trips.</p>
+        </div>
+        <div class="bar-list" data-max="550.6">
+          <div class="row"><span>Luxury Sedan</span><div class="track"><div class="fill" data-v="550.6"></div></div><span class="num">550.6 km</span></div>
+          <div class="row"><span>Full-size SUV</span><div class="track"><div class="fill" data-v="474.6"></div></div><span class="num">474.6 km</span></div>
+          <div class="row"><span>Crossover</span><div class="track"><div class="fill" data-v="395.1"></div></div><span class="num">395.1 km</span></div>
+          <div class="row"><span>Sports Car</span><div class="track"><div class="fill" data-v="375.5"></div></div><span class="num">375.5 km</span></div>
+          <div class="row"><span>Van / MPV</span><div class="track"><div class="fill" data-v="319.6"></div></div><span class="num">319.6 km</span></div>
+          <div class="row"><span>Electric Bus</span><div class="track"><div class="fill" data-v="269.8"></div></div><span class="num">269.8 km</span></div>
+          <div class="row"><span>Micro City Car</span><div class="track"><div class="fill" data-v="150.2"></div></div><span class="num">150.2 km</span></div>
+        </div>
+      </div>
+
+      <div class="panel" id="p3">
+        <div>
+          <div class="big">India</div>
+          <p style="color:var(--muted);margin-top:6px">leads with <b>159.2M</b> units</p>
+          <p style="margin-top:16px">Countries are remarkably close: the top markets are only a few million units apart. That shows strong EV demand across both developed and emerging economies.</p>
+        </div>
+        <div class="bar-list" data-max="159239271">
+          <div class="row"><span>India</span><div class="track"><div class="fill" data-v="159239271"></div></div><span class="num">159.2M</span></div>
+          <div class="row"><span>Vietnam</span><div class="track"><div class="fill" data-v="157312671"></div></div><span class="num">157.3M</span></div>
+          <div class="row"><span>UK</span><div class="track"><div class="fill" data-v="156661546"></div></div><span class="num">156.7M</span></div>
+          <div class="row"><span>USA</span><div class="track"><div class="fill" data-v="155268324"></div></div><span class="num">155.3M</span></div>
+          <div class="row"><span>France</span><div class="track"><div class="fill" data-v="154989316"></div></div><span class="num">155.0M</span></div>
+          <div class="row"><span>Germany</span><div class="track"><div class="fill" data-v="153722278"></div></div><span class="num">153.7M</span></div>
+          <div class="row"><span>Sweden</span><div class="track"><div class="fill" data-v="151407797"></div></div><span class="num">151.4M</span></div>
+        </div>
+      </div>
+
+      <div class="panel" id="p4">
+        <div>
+          <div class="big">AmpereWorks</div>
+          <p style="color:var(--muted);margin-top:6px">tops the list with <b>9.45M</b> units</p>
+          <p style="margin-top:16px">After the leader, competition is very tight: most of the top 10 sit between about 8.7M and 8.8M units, so no single brand dominates.</p>
+        </div>
+        <div class="bar-list" data-max="9453209">
+          <div class="row"><span>AmpereWorks</span><div class="track"><div class="fill" data-v="9453209"></div></div><span class="num">9.45M</span></div>
+          <div class="row"><span>MomentumMobility</span><div class="track"><div class="fill" data-v="8778501"></div></div><span class="num">8.78M</span></div>
+          <div class="row"><span>SurgeDynamics</span><div class="track"><div class="fill" data-v="8763611"></div></div><span class="num">8.76M</span></div>
+          <div class="row"><span>TerraMotors</span><div class="track"><div class="fill" data-v="8746119"></div></div><span class="num">8.75M</span></div>
+          <div class="row"><span>VoltMobility</span><div class="track"><div class="fill" data-v="8718601"></div></div><span class="num">8.72M</span></div>
+          <div class="row"><span>CurrentMotors</span><div class="track"><div class="fill" data-v="8711573"></div></div><span class="num">8.71M</span></div>
+          <div class="row"><span>WattWheels</span><div class="track"><div class="fill" data-v="8689635"></div></div><span class="num">8.69M</span></div>
+        </div>
+      </div>
+
+      <div class="panel" id="p5">
+        <div>
+          <div class="big">4.04 – 4.14</div>
+          <p style="color:var(--muted);margin-top:6px">range of average ratings across category × battery type</p>
+          <p style="margin-top:16px">The rating heatmap shows customers are consistently satisfied. No battery technology or vehicle category is clearly disliked, and the overall average is <b>4.09 / 5</b>.</p>
+        </div>
+        <div>
+          <ul>
+            <li><b>Overall average rating</b><span>4.09</span></li>
+            <li><b>Highest cell</b><span>≈ 4.14</span></li>
+            <li><b>Lowest cell</b><span>≈ 4.04</span></li>
+            <li><b>Battery types compared</b><span>LFP · NCA · NMC · Sodium-Ion · Solid-State</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel" id="p6">
+        <div>
+          <div class="big">≈ 170M / yr</div>
+          <p style="color:var(--muted);margin-top:6px">steady annual sales, 2018 – 2026</p>
+          <p style="margin-top:16px">Sales stay stable at roughly 165–172 million units each model year, with a small mid-period dip and a recovery to about 172M. The market in this dataset is mature and steady rather than growing sharply.</p>
+        </div>
+        <div>
+          <ul>
+            <li><b>Start of period</b><span>172,072,584</span></li>
+            <li><b>Mid-period low</b><span>165,815,039</span></li>
+            <li><b>Later peak</b><span>172,419,808</span></li>
+            <li><b>Years covered</b><span>2018 – 2026</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="takeaways" style="margin-top:24px">
+      <div class="take reveal"><div class="n">1</div><h4>Affordable vehicles lead</h4><p>Scooters, hatchbacks and compact SUVs drive EV adoption.</p></div>
+      <div class="take reveal"><div class="n">2</div><h4>NMC &amp; LFP dominate</h4><p>Together about 66% of the market; Sodium-Ion and Solid-State are emerging.</p></div>
+      <div class="take reveal"><div class="n">3</div><h4>Premium = more range</h4><p>Luxury sedans average 550 km versus about 150 km for micro city cars.</p></div>
+      <div class="take reveal"><div class="n">4</div><h4>A balanced market</h4><p>Sales are evenly spread across countries, regions and brands.</p></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="head reveal">
+      <div class="eyebrow">About the Project</div>
+      <h2>How it was built</h2>
+    </div>
+    <div class="about">
+      <div class="card reveal">
+        <h3>Approach</h3>
+        <ol class="steps">
+          <li><b>Data:</b> connected the EV market dataset (<code>ev_market_train.csv</code>) in Tableau.</li>
+          <li><b>Preparation:</b> checked field types and converted the data source to an extract for Tableau Public.</li>
+          <li><b>Analysis:</b> built 9 worksheets: KPI summary, sales trend, category, country, region, manufacturers, battery share, range and a rating heatmap.</li>
+          <li><b>Dashboard:</b> combined the views with global filters and a battery-type filter action, at a fixed 1200 px layout.</li>
+                    <li><b>Story:</b> created a Tableau Story to present the findings step by step.</li>
+          <li><b>Publishing:</b> published to Tableau Public and embedded in this Flask website.</li>
+          <li><b>Website:</b> built with Python, Flask, HTML and CSS, and deployed on Render.</li>
+        </ol>
+        <div class="chips">
+          <span class="chip">Tableau</span><span class="chip">Data Visualization</span><span class="chip">Dashboard Design</span><span class="chip">KPIs</span><span class="chip">Filter Actions</span><span class="chip">Storytelling</span><span class="chip">Python</span><span class="chip">Flask</span><span class="chip">Render</span>
+        </div>
+      </div>
+      <div class="card reveal">
+        <h3>Project facts</h3>
+        <ul class="meta">
+          <li>Records <span>200,000</span></li>
+          <li>Fields <span>37</span></li>
+          <li>Model years <span>2018 – 2026</span></li>
+          <li>Regions <span>7</span></li>
+          <li>Worksheets <span>9 + Dashboard + Story</span></li>
+          <li>Tool <span>Tableau Public</span></li>
+        </ul>
+        <div class="btns" style="margin-top:20px">
+          <a class="btn" style="background:var(--brand);color:#fff" href="https://public.tableau.com/app/profile/maahi.umarwani/vizzes" target="_blank" rel="noopener">Tableau Profile ↗</a>
+          <a class="btn" style="background:#0f1b2d;color:#fff" href="https://github.com/MaahiUmarwani/EV-Market-Analysis-Website" target="_blank" rel="noopener">GitHub Repo ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
