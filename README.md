@@ -59,8 +59,6 @@ EV-Market-Analysis-Website/
 ├── Procfile
 ├── requirements.txt
 ├── README.md
-├── ev_market_train.csv
-├── EV_Market_Analysis.twbx
 │
 ├── templates/
 │   ├── base.html
